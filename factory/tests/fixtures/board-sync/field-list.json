@@ -1,0 +1,9 @@
+{"fields":[
+ {"id":"F_title","name":"Title","type":"ProjectV2Field"},
+ {"id":"F_status","name":"Status","type":"ProjectV2SingleSelectField","options":[
+   {"id":"O_prog","name":"In progress"},{"id":"O_rev","name":"In review"},
+   {"id":"O_wait","name":"Waiting on captain"},{"id":"O_done","name":"Done"},{"id":"O_try","name":"To try"}]},
+ {"id":"F_update","name":"Update","type":"ProjectV2Field"},
+ {"id":"F_where","name":"Where to try","type":"ProjectV2Field"},
+ {"id":"F_changed","name":"What changed","type":"ProjectV2Field"}
+],"totalCount":5}
