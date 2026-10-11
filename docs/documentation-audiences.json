@@ -549,6 +549,10 @@
       "audience": "agent-runtime"
     },
     {
+      "path": "factory/docs/boards.md",
+      "audience": "operator-current"
+    },
+    {
       "path": "factory/docs/epic-delivery.md",
       "audience": "operator-current"
     },

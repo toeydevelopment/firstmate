@@ -1,0 +1,8 @@
+count: 6
+tasks[6]{id,state,kind,repo,title,held,links}:
+  t-flight,in_flight,ship,demo,"Add widget search",no,none
+  t-review,in_flight,ship,demo,"Fix login redirect",no,none
+  t-held,queued,task,demo,"Decide retention window",yes,none
+  t-queued,queued,ship,demo,Not started yet,no,none
+  t-merged,done,ship,demo,"Show invoice totals, again\n... (truncated, 90 chars total - use show t-merged --full to see complete text)",no,"pr:https://github.com/example-org/demo/pull/7"
+  t-report,done,scout,demo,"Investigate slow page",no,"report:data/t-report/report.md"

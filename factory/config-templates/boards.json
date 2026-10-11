@@ -1,0 +1,26 @@
+{
+  "owner": "example-org",
+  "tracker": {
+    "number": 1,
+    "status_field": "Status",
+    "update_field": "Update",
+    "status": {
+      "in_progress": "In progress",
+      "in_review": "In review",
+      "waiting_on_captain": "Waiting on captain",
+      "done": "Done"
+    }
+  },
+  "ready_to_try": {
+    "number": 2,
+    "status_field": "Status",
+    "status_option": "To try",
+    "where_field": "Where to try",
+    "where_default": "Not deployed yet",
+    "changed_field": "What changed"
+  },
+  "limits": {
+    "min_graphql_remaining": 300,
+    "max_calls": 40
+  }
+}
