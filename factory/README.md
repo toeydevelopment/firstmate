@@ -25,9 +25,11 @@ factory/
   README.md  VERSION
   bin/sf-install.sh          compose config/brief-include.md for one home
   bin/sf-sync-upstream.sh    merge upstream into the fork, then rerun the checks
+  bin/sf-runner-sample.sh    read-only runner health sampler (custom check)
   brief-include.md           shared standing rules for every worker
   config-templates/          example config files (added by later tasks)
   docs/fork-remotes.md       one-time remote and branch-protection setup
+  docs/runners.md            runner skill config and health sampler check
   tests/                     plain-bash tests, run by the overlay workflow
 skills/sf-<name>/            public skills installable into any project
 .claude-plugin/              plugin marketplace entry (added by later tasks)

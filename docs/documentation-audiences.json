@@ -553,6 +553,26 @@
       "audience": "operator-current"
     },
     {
+      "path": "factory/docs/runners.md",
+      "audience": "operator-current"
+    },
+    {
+      "path": "skills/sf-runner-ops/SKILL.md",
+      "audience": "public-product"
+    },
+    {
+      "path": "skills/sf-runner-ops/references/autoscaler.md",
+      "audience": "public-product"
+    },
+    {
+      "path": "skills/sf-runner-ops/references/cleanup.md",
+      "audience": "public-product"
+    },
+    {
+      "path": "skills/sf-runner-ops/references/vm-memory.md",
+      "audience": "public-product"
+    },
+    {
       "path": "skills/stow/SKILL.md",
       "audience": "public-product"
     },
