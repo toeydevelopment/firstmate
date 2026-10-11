@@ -561,6 +561,10 @@
       "audience": "operator-current"
     },
     {
+      "path": "factory/docs/hooks.md",
+      "audience": "operator-current"
+    },
+    {
       "path": "factory/docs/review-base.md",
       "audience": "operator-current"
     },
