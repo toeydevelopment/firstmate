@@ -1,0 +1,11 @@
+{
+  "name": "sf-evidence-first-issue-authoring",
+  "version": "0.1.0",
+  "description": "Investigate repositories and draft or audit evidence-grounded engineering issues.",
+  "author": {
+    "name": "Toeydevelopment",
+    "url": "https://github.com/toeydevelopment"
+  },
+  "repository": "https://github.com/toeydevelopment/skills",
+  "license": "MIT"
+}

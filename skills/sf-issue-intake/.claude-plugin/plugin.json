@@ -1,0 +1,11 @@
+{
+  "name": "sf-issue-intake",
+  "version": "0.1.0",
+  "description": "Verify and audit issues written by non-technical authors against the code, then produce a decision-ready visual brief.",
+  "author": {
+    "name": "Toeydevelopment",
+    "url": "https://github.com/toeydevelopment"
+  },
+  "repository": "https://github.com/toeydevelopment/skills",
+  "license": "MIT"
+}

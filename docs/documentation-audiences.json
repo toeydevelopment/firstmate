@@ -541,6 +541,42 @@
       "audience": "operator-current"
     },
     {
+      "path": "skills/sf-evidence-first-issue-authoring/README.md",
+      "audience": "public-product"
+    },
+    {
+      "path": "skills/sf-evidence-first-issue-authoring/SKILL.md",
+      "audience": "public-product"
+    },
+    {
+      "path": "skills/sf-evidence-first-issue-authoring/references/audit-rubric.md",
+      "audience": "public-product"
+    },
+    {
+      "path": "skills/sf-evidence-first-issue-authoring/references/investigation-protocol.md",
+      "audience": "public-product"
+    },
+    {
+      "path": "skills/sf-evidence-first-issue-authoring/references/issue-templates.md",
+      "audience": "public-product"
+    },
+    {
+      "path": "skills/sf-issue-intake/README.md",
+      "audience": "public-product"
+    },
+    {
+      "path": "skills/sf-issue-intake/SKILL.md",
+      "audience": "public-product"
+    },
+    {
+      "path": "skills/sf-issue-intake/references/card-and-report-format.md",
+      "audience": "public-product"
+    },
+    {
+      "path": "skills/sf-issue-intake/references/html-brief.md",
+      "audience": "public-product"
+    },
+    {
       "path": "skills/stow/SKILL.md",
       "audience": "public-product"
     },
