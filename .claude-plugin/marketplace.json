@@ -1,0 +1,20 @@
+{
+  "name": "toeydevelopment-firstmate",
+  "description": "Public skills from the Toeydevelopment firstmate fork",
+  "owner": {
+    "name": "Toeydevelopment",
+    "url": "https://github.com/toeydevelopment"
+  },
+  "plugins": [
+    {
+      "name": "sf-issue-intake",
+      "source": "./skills/sf-issue-intake",
+      "description": "Verify and audit issues written by non-technical authors against the code, then produce a decision-ready visual brief."
+    },
+    {
+      "name": "sf-evidence-first-issue-authoring",
+      "source": "./skills/sf-evidence-first-issue-authoring",
+      "description": "Investigate a repository and draft or audit evidence-grounded engineering issues."
+    }
+  ]
+}

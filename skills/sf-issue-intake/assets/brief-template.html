@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<!--
+  Issue Intake brief template. Replace the sample content (a made-up shop app) with
+  the real issues. Delete this comment in the output.
+  Diagrams are HTML boxes, not scaled SVG: they reflow into a vertical stack when their box is
+  narrow so text never shrinks. Layout is fluid at every width: grid auto-fit, minmax, clamp and
+  container queries in em. No layout may depend on one fixed pixel width.
+  Diagram style after diagram-design (MIT), https://github.com/cathrynlavery/diagram-design
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Issue Intake Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --paper:#f5f5f5;--card:#fff;--ink:#2d3142;--muted:#4f5d75;--soft:#6b7489;
+  --rule:rgba(45,49,66,.14);--accent:#eb6c36;--tint:rgba(235,108,54,.08);--link:#2e5aa8;
+  --sans:'Geist',system-ui,sans-serif;--serif:'Instrument Serif',Georgia,serif;--mono:'Geist Mono',ui-monospace,monospace;
+}
+@media(prefers-color-scheme:dark){:root{
+  --paper:#2d3142;--card:#393e53;--ink:#f5f5f5;--muted:#bfc0c0;--soft:#a3acbf;
+  --rule:rgba(245,245,245,.16);--accent:#f08a59;--tint:rgba(240,138,89,.12);--link:#6a95d8}}
+/* Size floor: body 15px, every diagram and card label 13px, as rendered. */
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.5;font-size:15px;-webkit-text-size-adjust:100%}
+main{max-width:70em;margin:0 auto;padding:clamp(16px,3vw,32px) 16px 48px}
+.eyebrow{font:500 13px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+h1{font:400 clamp(1.7rem,2.4vw + .9rem,2.2rem)/1.15 var(--serif);letter-spacing:-.02em;margin-bottom:8px}
+h2{font:400 1.4rem/1.2 var(--serif);margin-bottom:10px}
+h3{font:600 16px/1.3 var(--sans)}
+.snap{font:400 13px/1.5 var(--mono);color:var(--muted);margin-bottom:20px;overflow-wrap:anywhere}
+section{margin-top:28px}
+.strip{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--rule);background:var(--card);border-radius:6px;padding:8px 10px;font-size:15px}
+.chip b{font-family:var(--mono);font-weight:500}
+.badge{display:inline-block;font:500 13px var(--mono);letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--ink);border-radius:2px;padding:2px 6px;white-space:nowrap}
+.badge.clarify,.badge.split{border-color:var(--accent);color:var(--accent);background:var(--tint)}
+.badge.close{border-style:dashed;color:var(--muted);border-color:var(--muted)}
+
+/* Diagrams: HTML boxes. Row on desktop, vertical stack on phone. Never scaled. */
+figure.dg,.card{container-type:inline-size}
+.dg{border:1px solid var(--rule);border-radius:6px;background:var(--card);padding:14px}
+.dg .row{font:500 13px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:0 0 8px}
+.dg .row:not(:first-child){margin-top:16px}
+.flow{display:flex;flex-wrap:nowrap;align-items:stretch;gap:0}
+.node{flex:1 1 0;min-width:0;border:1.2px solid var(--ink);border-radius:6px;background:var(--card);padding:8px 10px;font:600 14px/1.35 var(--sans);overflow-wrap:anywhere}
+.node small{display:block;font:400 13px/1.4 var(--mono);color:var(--muted);margin-top:2px}
+.node.hot{background:var(--tint);border:1.6px solid var(--accent)}
+.node.stale{border-style:dashed}
+.node.unk{border-style:dotted}
+.node.epic{border:1.2px dashed var(--muted);background:none}
+.edge{flex:0 0 auto;align-self:center;padding:0 8px;font:500 13px var(--mono);letter-spacing:.04em;color:var(--muted);text-align:center;white-space:nowrap}
+.edge::after{content:" \2192"}
+.edge.d{font-style:italic}
+.edge.d::after{content:" \21E2"}
+.groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20em),1fr));gap:16px;margin-top:14px}
+.group{min-width:0}
+.note{margin-top:12px;font:400 13px/1.5 var(--mono);color:var(--muted)}
+/* Reflow follows the container, in em, not a device width: a flow stacks when its box is too narrow for a row. */
+@container (max-width:42em){
+  .flow{flex-direction:column}
+  .edge{padding:6px 0;white-space:normal}
+  .edge::after{content:" \2193"}
+  .edge.d::after{content:" \21E3"}
+}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,24em),1fr));gap:16px}
+.card{border:1px solid var(--rule);background:var(--card);border-radius:6px;padding:16px;min-width:0}
+.card header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:6px}
+.card header h3{overflow-wrap:anywhere}
+.counts{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 10px}
+.counts span{font:500 13px var(--mono);border:1px solid var(--rule);border-radius:2px;padding:2px 6px}
+.counts .w{border-color:var(--accent);color:var(--accent)}
+dl{display:grid;grid-template-columns:minmax(0,7em) minmax(0,1fr);gap:6px 12px;font-size:15px}
+dt{font:500 13px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+dd{overflow-wrap:anywhere}
+code{font:400 13px var(--mono);color:var(--muted);overflow-wrap:anywhere;word-break:break-all}
+.q{margin-top:12px;border-top:1px solid var(--rule);padding-top:10px;font-size:15px}
+.q ol{padding-left:22px}.q li{margin:6px 0}
+.q em{color:var(--muted);font-style:normal;font-family:var(--mono);font-size:13px}
+details{margin-top:12px;border-top:1px solid var(--rule);padding-top:4px}
+summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font:500 14px var(--mono);color:var(--link)}
+details dl{margin-top:4px}
+.card .dg{margin-top:12px}
+
+.decide{border:1.5px solid var(--ink);border-radius:6px;padding:8px 16px 16px;background:var(--card)}
+.decide ol{list-style:none;counter-reset:d}
+.decide li{counter-increment:d;display:grid;grid-template-columns:32px minmax(0,1fr);gap:8px;padding:12px 0;min-height:44px;border-top:1px solid var(--rule);font-size:15px}
+.decide li:first-child{border-top:0}
+.decide li::before{content:counter(d);font:500 15px var(--mono);color:var(--accent)}
+.decide small{display:block;color:var(--muted);font-family:var(--mono);font-size:13px}
+.reply{margin-top:10px;font:400 13px/1.5 var(--mono);color:var(--muted)}
+footer{margin-top:28px;font:400 13px/1.5 var(--mono);color:var(--soft);overflow-wrap:anywhere}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.cards .card.full{grid-column:1/-1}
+@container (max-width:28em){
+  dl{grid-template-columns:minmax(0,1fr);gap:0}
+  dt{padding-top:10px}
+}
+/* cards lead with problem, badge, questions; the rest sits behind <details> at every width */
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Issue intake</p>
+  <h1>Three shop issues, checked against the code</h1>
+  <p class="snap">example/shop-api · main @ a1b2c3d · 2026-01-01 · knowledge only, nothing was changed · not checked: production data</p>
+
+  <section aria-label="At a glance">
+    <div class="strip">
+      <div class="chip"><b>#12</b> receipt print <span class="badge split">split</span></div>
+      <div class="chip"><b>#14</b> blank price label <span class="badge act">act</span></div>
+      <div class="chip"><b>#15</b> export to CSV <span class="badge clarify">clarify first</span></div>
+    </div>
+  </section>
+
+  <section aria-label="Overview map">
+    <h2>How they connect</h2>
+    <figure class="dg" role="group" aria-labelledby="map-cap">
+      <figcaption id="map-cap" class="sr">Issue map. Issue 14 is needed by issue 12; issue 15 stands alone; no parent epic was found.</figcaption>
+      <div class="node epic">Parent epic<small>none found (5 places checked)</small></div>
+      <div class="groups">
+        <div class="group">
+          <p class="row">Group A · billing</p>
+          <div class="flow">
+            <div class="node">#14 blank price label<small>S · low · ship first</small></div>
+            <span class="edge">NEEDS</span>
+            <div class="node hot">#12 receipt print<small>L · medium · split in 2</small></div>
+          </div>
+        </div>
+        <div class="group">
+          <p class="row">Group B · standalone</p>
+          <div class="flow">
+            <div class="node">#15 export to CSV<small>M · low · needs answers</small></div>
+          </div>
+        </div>
+      </div>
+      <p class="note">Arrow = needs. Dashed arrow = coordinate. Dashed box = epic. Orange = needs a decision.</p>
+    </figure>
+  </section>
+
+  <section aria-label="Issue cards">
+    <h2>Per issue</h2>
+    <div class="cards">
+
+      <article class="card full">
+        <header><h3>#12 Print a receipt before payment is complete</h3><span class="badge split">split</span></header>
+        <div class="counts"><span>3 confirmed</span><span class="w">1 stale</span><span>1 unverified</span></div>
+        <dl>
+          <dt>Problem</dt><dd>Staff cannot print a receipt while an order is still unpaid.</dd>
+          <dt>Done when</dt><dd>An unpaid order prints a clearly marked proforma slip; paid orders print as today.</dd>
+        </dl>
+        <div class="q">
+          <ol>
+            <li>Does the slip need to follow a legal tax-document layout, or is a simple slip enough? <em>[default: simple slip]</em></li>
+            <li>Can the audit-trail part ship later as a separate issue? <em>[default: yes]</em></li>
+          </ol>
+        </div>
+        <details>
+          <summary>Evidence and details</summary>
+          <dl>
+            <dt>Parent</dt><dd>none found</dd>
+            <dt>Affected</dt><dd>Cashiers; customers who ask for proof of order.</dd>
+            <dt>Evidence</dt><dd>Print route needs a payment record <code>orders/print.go:88</code>. Cited path is stale; real file moved.</dd>
+            <dt>Size / risk</dt><dd>L as written (two pieces) · medium: customer-facing document.</dd>
+          </dl>
+        </details>
+        <figure class="dg" role="group" aria-labelledby="c12-cap">
+          <figcaption id="c12-cap" class="sr">Receipt, now and wanted. Today an unpaid order has no print path; wanted is a marked slip.</figcaption>
+          <p class="row">Now</p>
+          <div class="flow">
+            <div class="node">unpaid order</div><span class="edge"></span>
+            <div class="node hot">print needs payment</div><span class="edge"></span>
+            <div class="node hot">no slip available</div>
+          </div>
+          <p class="row">Wanted</p>
+          <div class="flow">
+            <div class="node">unpaid order</div><span class="edge"></span>
+            <div class="node">print marked slip</div><span class="edge"></span>
+            <div class="node">slip says NOT PAID</div>
+          </div>
+        </figure>
+      </article>
+
+      <article class="card">
+        <header><h3>#14 Blank price label on old orders</h3><span class="badge act">act</span></header>
+        <div class="counts"><span>2 confirmed</span></div>
+        <dl>
+          <dt>Problem</dt><dd>Old orders show an empty price label.</dd>
+          <dt>Done when</dt><dd>Old orders show the product price label.</dd>
+        </dl>
+        <details>
+          <summary>Evidence and details</summary>
+          <dl>
+            <dt>Parent</dt><dd>none found</dd>
+            <dt>Affected</dt><dd>Staff editing old orders.</dd>
+            <dt>Size / risk</dt><dd>S · low: read-only display.</dd>
+          </dl>
+        </details>
+      </article>
+
+      <article class="card">
+        <header><h3>#15 Export orders to CSV</h3><span class="badge clarify">clarify first</span></header>
+        <div class="counts"><span>1 confirmed</span><span>2 unverified</span></div>
+        <dl>
+          <dt>Problem</dt><dd>Managers want orders in a spreadsheet.</dd>
+          <dt>Done when</dt><dd>Not yet decided: columns and period are not stated.</dd>
+        </dl>
+        <div class="q">
+          <ol><li>Which columns do managers need, and for how long a period? <em>[no default]</em></li></ol>
+        </div>
+        <details>
+          <summary>Evidence and details</summary>
+          <dl>
+            <dt>Parent</dt><dd>none found</dd>
+            <dt>Affected</dt><dd>Branch managers.</dd>
+            <dt>Size / risk</dt><dd>M · low.</dd>
+          </dl>
+        </details>
+      </article>
+
+    </div>
+  </section>
+
+  <section aria-label="Decide and discuss">
+    <h2>Decide and discuss</h2>
+    <div class="decide">
+      <ol>
+        <li><span>Order: #14, then #12; #15 any time. <small>[default: yes]</small></span></li>
+        <li><span>#12: split into receipt slip and audit trail? <small>[default: yes]</small></span></li>
+        <li><span>#12 Q1: simple slip or legal layout? <small>[default: simple]</small></span></li>
+        <li><span>#15 Q1: which columns and period? <small>[needs author]</small></span></li>
+      </ol>
+      <p class="reply">Reply like “1 yes, 2 yes, 3 default, 4 let’s talk”.</p>
+    </div>
+  </section>
+
+  <footer>Not checked: production data, other repositories. Diagram style after diagram-design (MIT), github.com/cathrynlavery/diagram-design.</footer>
+</main>
+</body>
+</html>
