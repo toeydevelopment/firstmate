@@ -541,6 +541,18 @@
       "audience": "operator-current"
     },
     {
+      "path": "factory/README.md",
+      "audience": "operator-current"
+    },
+    {
+      "path": "factory/brief-include.md",
+      "audience": "agent-runtime"
+    },
+    {
+      "path": "factory/docs/fork-remotes.md",
+      "audience": "operator-current"
+    },
+    {
       "path": "factory/docs/review-base.md",
       "audience": "operator-current"
     },
