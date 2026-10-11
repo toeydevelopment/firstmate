@@ -50,3 +50,8 @@ skills/sf-<name>/            public skills installable into any project
 Run `factory/bin/sf-sync-upstream.sh` from a clean checkout.
 It merges `upstream/main` (never a rebase, never a force), reruns `bin/fm-doc-audience-check.sh` and the tests in `factory/tests/`, and leaves the push to you.
 Push the result without `--force`, so every home can keep fast-forwarding from the fork.
+
+## Epic delivery
+
+`factory/bin/sf-epic-gate.sh` checks an epic pull request before it merges and prints the epic ledger.
+See [`docs/epic-delivery.md`](docs/epic-delivery.md).
