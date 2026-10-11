@@ -25,8 +25,10 @@ factory/
   README.md  VERSION
   bin/sf-install.sh          compose config/brief-include.md for one home
   bin/sf-sync-upstream.sh    merge upstream into the fork, then rerun the checks
+  bin/sf-board-sync.sh       project task state onto GitHub Project boards
   brief-include.md           shared standing rules for every worker
-  config-templates/          example config files (added by later tasks)
+  config-templates/          example config files (boards.json)
+  docs/boards.md             board projection setup and rules
   docs/fork-remotes.md       one-time remote and branch-protection setup
   tests/                     plain-bash tests, run by the overlay workflow
 skills/sf-<name>/            public skills installable into any project
