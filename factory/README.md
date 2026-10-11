@@ -25,6 +25,7 @@ factory/
   README.md  VERSION
   bin/sf-install.sh          compose config/brief-include.md for one home
   bin/sf-sync-upstream.sh    merge upstream into the fork, then rerun the checks
+  bin/sf-runner-sample.sh    read-only runner health sampler (custom check)
   bin/sf-board-sync.sh       project task state onto GitHub Project boards
   bin/sf-hooks-install.sh    merge the guard hook into a settings.json (dry run by default)
   hooks/sf-guard.sh          PreToolUse guard hook, see docs/hooks.md
@@ -32,6 +33,7 @@ factory/
   config-templates/          example config files (boards.json)
   docs/boards.md             board projection setup and rules
   docs/fork-remotes.md       one-time remote and branch-protection setup
+  docs/runners.md            runner skill config and health sampler check
   docs/hooks.md              what the guard hook blocks and its exceptions
   tests/                     plain-bash tests, run by the overlay workflow
 skills/sf-<name>/            public skills installable into any project
