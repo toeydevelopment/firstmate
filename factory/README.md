@@ -25,9 +25,12 @@ factory/
   README.md  VERSION
   bin/sf-install.sh          compose config/brief-include.md for one home
   bin/sf-sync-upstream.sh    merge upstream into the fork, then rerun the checks
+  bin/sf-hooks-install.sh    merge the guard hook into a settings.json (dry run by default)
+  hooks/sf-guard.sh          PreToolUse guard hook, see docs/hooks.md
   brief-include.md           shared standing rules for every worker
   config-templates/          example config files (added by later tasks)
   docs/fork-remotes.md       one-time remote and branch-protection setup
+  docs/hooks.md              what the guard hook blocks and its exceptions
   tests/                     plain-bash tests, run by the overlay workflow
 skills/sf-<name>/            public skills installable into any project
 .claude-plugin/              plugin marketplace entry (added by later tasks)
