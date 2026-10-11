@@ -1,0 +1,6 @@
+[
+{"number":41,"state":"closed","merged_at":"2026-10-09T10:00:00Z","body":"Closes #1","head":{"ref":"fm/t1"},"base":{"ref":"epic/demo"}},
+{"number":42,"state":"closed","merged_at":"2026-10-09T11:00:00Z","body":"Resolves #2 and fixes acme/app#3. Closes acme/other#99","head":{"ref":"fm/t2"},"base":{"ref":"epic/demo"}},
+{"number":43,"state":"closed","merged_at":null,"body":"Closes #9","head":{"ref":"fm/t9"},"base":{"ref":"epic/demo"}},
+{"number":44,"state":"open","merged_at":null,"body":"Closes #10","head":{"ref":"fm/t10"},"base":{"ref":"epic/demo"}}
+]
