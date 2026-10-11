@@ -30,9 +30,21 @@ for f in /work/proj/.env /work/proj/.env.production /home/u/key.pem /home/u/.ssh
   expect block "read $f" "$(rd "$f")"
 done
 for f in /work/proj/.env.example /home/u/.ssh/id_rsa.pub /work/proj/src/main.go /home/u/.config/gh/hosts.yml; do
-  expect allow "read $f" "$(rd "$f")"
+  case "$f" in
+    */.config/gh/hosts.yml) expect block "read $f" "$(rd "$f")" ;;
+    *) expect allow "read $f" "$(rd "$f")" ;;
+  esac
 done
 expect block "cat .env" "$(bash_ 'cat .env')"
+expect block "cat GitHub hosts" "$(bash_ 'cat ~/.config/gh/hosts.yml')"
+expect allow "grep bare token pattern" "$(bash_ 'grep token src/main.go')"
+expect allow "heredoc body mentions token and .env" "$(bash_ 'cat <<EOF >> data/learnings.md
+text mentions token and .env
+EOF')"
+expect block "cat .env after heredoc" "$(bash_ 'cat <<EOF
+text mentions .env
+EOF
+cat .env')"
 expect block "grep in quoted pem" "$(bash_ "grep KEY 'certs/server.pem' | head")"
 expect block "redirect from id_rsa" "$(bash_ 'base64 < ~/.ssh/id_rsa')"
 expect allow "ls .env is not a read" "$(bash_ 'ls -la .env')"

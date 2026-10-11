@@ -44,7 +44,7 @@ secret_name() {  # <path-or-token> ; true when its basename is a secret file
   local b=${1##*/}
   case "$b" in
     *.example|*.sample|*.template|*.pub) return 1 ;;
-    .env|.env.*|*.pem|id_*|.credentials*|*credentials.json|.netrc|token|.token|*.token|token.json) return 0 ;;
+    .env|.env.*|*.pem|id_*|.credentials*|*credentials.json|.netrc|hosts.yml|token|.token|*.token|token.json) return 0 ;;
   esac
   return 1
 }
@@ -89,18 +89,51 @@ case "$TOOL" in
   Bash)
     cmd=$(printf '%s' "$INPUT" | jq -r '.tool_input.command // empty')
     [ -n "$cmd" ] || exit 0
-    # Tokenise on whitespace and shell separators; quotes are stripped.
-    toks=$(printf '%s' "$cmd" | tr -d '"'"'" | tr ';|&<>()`' '\n\n\n\n\n\n\n\n' | tr ' \t' '\n\n')
-    reader=0
-    printf '%s\n' "$cmd" | grep -Eq '(^|[;|&(`[:space:]])(cat|less|more|head|tail|grep|egrep|rg|sed|awk|cp|mv|base64|xxd|od|strings|source|bat|nl|tac|openssl|curl)[[:space:]]|(^|[;&|[:space:]])\.[[:space:]]|<[[:space:]]*[^[:space:]]' && reader=1
-    if [ "$reader" -eq 1 ]; then
+    # Keep heredoc bodies out. Inspect file-like arguments after reader verbs.
+    parse_cmd=$(printf '%s\n' "$cmd" | awk '
+      {
+        if (skip) {
+          line=$0
+          sub(/^[[:space:]]*/, "", line)
+          if (line == delimiter) skip=0
+          next
+        }
+        if (match($0, /<<-?[[:space:]]*[^[:space:]]+/)) {
+          token=substr($0, RSTART, RLENGTH)
+          sub(/^<<-?[[:space:]]*/, "", token)
+          gsub(/^\047|\047$|^"|"$/, "", token)
+          delimiter=token
+          skip=1
+          print substr($0, 1, RSTART-1)
+          next
+        }
+        print
+      }
+    ')
+    while IFS= read -r segment; do
+      # Remove output redirections. Preserve input redirection operands.
+      segment=$(printf '%s' "$segment" | sed -E 's/(^|[[:space:]])[0-9]*>[>&]?[[:space:]]*[^[:space:]]+/ /g')
+      segment=$(printf '%s' "$segment" | sed -E 's/<[[:space:]]*/ < /g')
+      reader=
       while IFS= read -r t; do
         [ -n "$t" ] || continue
+        case "$t" in
+          cat|less|more|head|tail|grep|egrep|rg|sed|awk|cp|mv|base64|xxd|od|strings|source|bat|nl|tac|openssl|curl)
+            reader=$t
+            continue ;;
+        esac
+        case "$t" in
+          token|.token|*.token|token.json)
+            case "$reader" in grep|egrep|rg|sed|awk) continue ;; esac ;;
+        esac
+        [ -n "$reader" ] || continue
+        if [ "$t" = "<" ]; then reader=input-redirection; continue; fi
+        case "$t" in -*) continue ;; esac
         secret_name "$t" || continue
         allowed_path "$(abs_path "$t")" && continue
         deny "command reads secret file $t"
-      done <<< "$toks"
-    fi
+      done < <(printf '%s' "$segment" | xargs -n1 printf '%s\n' 2>/dev/null || true)
+    done < <(printf '%s\n' "$parse_cmd" | tr ';|&' '\n\n\n')
     # rm / unlink outside the project root.
     if printf '%s\n' "$cmd" | grep -Eq '(^|[;&|(`[:space:]])(rm|unlink|rmdir|shred)([[:space:]]|$)'; then
       root=$(abs_path "$CWD")
