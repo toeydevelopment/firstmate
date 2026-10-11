@@ -1,0 +1,4 @@
+{"total_count":2,"workflow_runs":[
+{"id":900,"head_sha":"aaaa1111aaaa1111aaaa1111aaaa1111aaaa1111","status":"completed","conclusion":"failure"},
+{"id":901,"head_sha":"aaaa1111aaaa1111aaaa1111aaaa1111aaaa1111","status":"completed","conclusion":"success"}
+]}

@@ -1,0 +1,2 @@
+findings[1]:
+  1. [warning] src/feature.sh:3 quoting is wrong

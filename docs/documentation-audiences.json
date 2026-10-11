@@ -553,7 +553,15 @@
       "audience": "operator-current"
     },
     {
+      "path": "factory/docs/epic-delivery.md",
+      "audience": "operator-current"
+    },
+    {
       "path": "factory/docs/fork-remotes.md",
+      "audience": "operator-current"
+    },
+    {
+      "path": "factory/docs/review-base.md",
       "audience": "operator-current"
     },
     {
