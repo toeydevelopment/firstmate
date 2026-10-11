@@ -1,0 +1,13 @@
+{
+  "default": {
+    "e2eWorkflow": "e2e.yml"
+  },
+  "repos": {
+    "example-org/example-api": {
+      "e2eWorkflow": "e2e-dispatch.yml"
+    },
+    "example-org/example-web": {
+      "e2eWorkflow": "e2e.yml"
+    }
+  }
+}
