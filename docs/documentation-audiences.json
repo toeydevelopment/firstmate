@@ -553,6 +553,10 @@
       "audience": "operator-current"
     },
     {
+      "path": "factory/docs/hooks.md",
+      "audience": "operator-current"
+    },
+    {
       "path": "skills/stow/SKILL.md",
       "audience": "public-product"
     },
