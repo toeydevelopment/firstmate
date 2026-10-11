@@ -1,0 +1,3 @@
+project=example
+base_branch=develop
+mode=direct-PR

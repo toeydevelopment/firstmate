@@ -557,6 +557,10 @@
       "audience": "operator-current"
     },
     {
+      "path": "factory/docs/review-base.md",
+      "audience": "operator-current"
+    },
+    {
       "path": "skills/stow/SKILL.md",
       "audience": "public-product"
     },

@@ -1,0 +1,4 @@
+findings[3]:
+  1. [error] docs/other-ticket.txt:12 describes behaviour that is not covered by this change
+  2. [warning] src/feature.sh:3 quoting is wrong (see also src/shared/util.sh)
+  3. [info] version 1.2.3 of nothing; see https://example.com/src/feature.sh and README.dev.
